@@ -7,10 +7,18 @@ with camel-http4 component and Java's Krb5LoginModule.
 
 This instructions are for setting up a kerberos server and Apache HTTPD on a Fedora 31 Server
 
+Both Kerberos and Httpd run on the same box and ```kerberos.example.com``` and ```mysite.example.com``` must be resolvable hostnames, via dns or through /etc/hosts file on both client (java application)  and server(kerberos/httpd). 
+For example:
+```
+# cat /etc/hosts
+192.168.122.194 mysite.example.com kerberos.example.com
+.............
+```
+
 ### Kerberos
 Install Kerberos and httpd packages
 ```
-# dnf install krb5-libs krb5-server krb5-workstation mod_auth_gss httpd 
+# dnf install krb5-libs krb5-server krb5-workstation mod_auth_gssapi httpd 
 ```
 Edit the /etc/krb5.conf and /var/kerberos/krb5kdc/kdc.conf to reflect your realm name and domain to realm mappings. 
 
